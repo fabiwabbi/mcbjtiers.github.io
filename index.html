@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MC TIERS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#060b18;
+    color:white;
+    padding:30px;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:#0d1327;
+    border:1px solid #1c2a4d;
+    border-radius:24px;
+    padding:20px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.logo{
+    font-size:42px;
+    font-weight:700;
+    background:linear-gradient(to right,#ffe600,#ff9100);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* DISCORD ICON */
+
+.discord-icon{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:58px;
+    height:58px;
+    background:#5865F2;
+    border-radius:16px;
+    transition:0.2s;
+    text-decoration:none;
+}
+
+.discord-icon:hover{
+    transform:translateY(-4px) scale(1.05);
+    background:#6c77ff;
+}
+
+.discord-icon img{
+    width:30px;
+    height:30px;
+}
+
+/* TOOLTIP */
+
+.tooltip{
+    position:absolute;
+    bottom:-46px;
+    background:#10172d;
+    border:1px solid #29385f;
+    padding:9px 14px;
+    border-radius:12px;
+    font-size:14px;
+    color:white;
+    opacity:0;
+    transition:0.2s;
+    pointer-events:none;
+    white-space:nowrap;
+}
+
+.discord-icon:hover .tooltip{
+    opacity:1;
+}
+
+/* SEARCH */
+
+.search{
+    background:#151d36;
+    border:none;
+    border-radius:14px;
+    padding:14px 18px;
+    width:260px;
+    color:white;
+    outline:none;
+    font-size:15px;
+}
+
+/* TITLE */
+
+.title{
+    font-size:44px;
+    margin-bottom:30px;
+}
+
+/* FILTER BUTTONS */
+
+.mode-bar{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:35px;
+}
+
+.mode{
+    background:#10172d;
+    border:1px solid #1c2a4d;
+    border-radius:18px;
+    padding:16px 22px;
+    cursor:pointer;
+    transition:0.2s;
+    font-weight:600;
+}
+
+.mode:hover{
+    transform:translateY(-4px);
+    border-color:#5674ff;
+}
+
+.mode.active{
+    border-color:#ffd54a;
+    color:#ffd54a;
+    box-shadow:0 0 15px rgba(255,213,74,0.2);
+}
+
+/* LEADERBOARD */
+
+.leaderboard{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.player-card{
+    background:#0d1327;
+    border:1px solid #1c2a4d;
+    border-radius:22px;
+    padding:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:0.2s;
+}
+
+.player-card:hover{
+    transform:scale(1.01);
+    border-color:#4f72ff;
+}
+
+.left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.rank{
+    font-size:46px;
+    font-weight:700;
+    width:70px;
+}
+
+.skin{
+    width:78px;
+    height:78px;
+    border-radius:14px;
+    overflow:hidden;
+    background:#151d36;
+}
+
+.skin img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.info h2{
+    font-size:34px;
+}
+
+/* RIGHT SIDE */
+
+.right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.region{
+    background:#168a37;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:700;
+}
+
+.tiers{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    max-width:800px;
+}
+
+.tier{
+    padding:10px 14px;
+    border-radius:12px;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* TIER COLORS */
+
+.ht1{
+    background:#ffe44d;
+    color:black;
+}
+
+.ht2{
+    background:#d9d9d9;
+    color:black;
+}
+
+.ht3{
+    background:#b37742;
+}
+
+.lt4{
+    background:#ff9429;
+}
+
+.lt5{
+    background:#6e4420;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:40px;
+    text-align:center;
+    color:#6f7da5;
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+    .player-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .right{
+        width:100%;
+    }
+
+    .navbar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">MC TIERS</div>
+
+    <div class="nav-right">
+
+        <!-- DISCORD ICON -->
+
+        <a href="https://discord.gg/frXuwSDZ5Q"
+        target="_blank"
+        class="discord-icon">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+
+            <span class="tooltip">Join our Server!</span>
+
+        </a>
+
+        <!-- SEARCH -->
+
+        <input type="text" class="search" id="searchInput" placeholder="Search player...">
+
+    </div>
+
+</div>
+
+<!-- TITLE -->
+
+<h1 class="title">⚔️ Server Rankings</h1>
+
+<!-- FILTER BUTTONS -->
+
+<div class="mode-bar">
+
+    <div class="mode active" onclick="filterMode('all', this)">🏆 Overall</div>
+
+    <div class="mode" onclick="filterMode('sword', this)">⚔️ Sword</div>
+
+    <div class="mode" onclick="filterMode('axe', this)">🪓 Axe</div>
+
+    <div class="mode" onclick="filterMode('mace', this)">🔨 Mace</div>
+
+    <div class="mode" onclick="filterMode('mace-nototem', this)">💀 Mace No Totem</div>
+
+    <div class="mode" onclick="filterMode('spear', this)">🔱 Spear</div>
+
+    <div class="mode" onclick="filterMode('spearmace', this)">⚔️🔨 Spear Mace</div>
+
+    <div class="mode" onclick="filterMode('potions', this)">🧪 Potions</div>
+
+</div>
+
+<!-- LEADERBOARD -->
+
+<div class="leaderboard">
+
+<!-- PLAYER 1 -->
+
+<div class="player-card">
+
+    <div class="left">
+
+        <div class="rank">1.</div>
+
+        <div class="skin">
+            <img src="https://mc-heads.net/avatar/Steve">
+        </div>
+
+        <div class="info">
+            <h2>Player1</h2>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="region">EU</div>
+
+        <div class="tiers">
+
+            <div class="tier ht1 sword">Sword HT1</div>
+            <div class="tier ht2 axe">Axe HT2</div>
+            <div class="tier ht3 mace">Mace HT3</div>
+            <div class="tier lt4 mace-nototem">Mace No Totem LT4</div>
+            <div class="tier ht2 spear">Spear HT2</div>
+            <div class="tier ht1 spearmace">Spear Mace HT1</div>
+            <div class="tier lt5 potions">Potions LT5</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<footer>
+⚠️ Fake tiers or abusing tests may result in punishments.
+</footer>
+
+<script>
+
+document.getElementById("searchInput").addEventListener("keyup", function(){
+
+    let value = this.value.toLowerCase();
+
+    document.querySelectorAll(".player-card").forEach(card => {
+
+        let player = card.querySelector("h2").innerText.toLowerCase();
+
+        if(player.includes(value)){
+            card.style.display = "flex";
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+
+});
+
+function filterMode(mode, element){
+
+    let cards = document.querySelectorAll(".player-card");
+
+    cards.forEach(card => {
+
+        let tiers = card.querySelectorAll(".tier");
+
+        if(mode === "all"){
+
+            card.style.display = "flex";
+
+            tiers.forEach(tier=>{
+                tier.style.display = "inline-block";
+            });
+
+        }
+        else{
+
+            let hasTier = false;
+
+            tiers.forEach(tier=>{
+
+                if(tier.classList.contains(mode)){
+                    tier.style.display = "inline-block";
+                    hasTier = true;
+                }
+                else{
+                    tier.style.display = "none";
+                }
+
+            });
+
+            if(hasTier){
+                card.style.display = "flex";
+            }
+            else{
+                card.style.display = "none";
+            }
+
+        }
+
+    });
+
+    document.querySelectorAll(".mode").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+
+    element.classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
